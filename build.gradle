@@ -20,16 +20,30 @@ repositories {
 }
 
 dependencies {
+	//mongo
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+	//spring
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	//kafka
 	implementation 'org.springframework.kafka:spring-kafka'
+
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.5.3'
-	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-pubsub:1.2.5.RELEASE'
 	implementation 'org.springframework.integration:spring-integration-core'
+
+	//lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	//tests
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+	//shared
+	implementation 'com.jules.ss:converters:1.0.1'
+	implementation 'com.jules.ss:common-dtos:1.0.3.1'
+
 }
 
 test {
