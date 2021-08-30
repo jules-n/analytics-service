@@ -16,9 +16,13 @@ spring:
               packages: '*'
             value:
               default:
-                type: com.ynero.ss.analytics_service.domain.PortValue
+                type: dtos.PortValueDTO
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-serializer: org.springframework.kafka.support.serializer.ToStringSerializer
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.ToStringSerializer
+mongock:
+  start-system-version: 1
+  change-logs-scan-package:
+    - com.ynero.ss.analytics_service.migration
