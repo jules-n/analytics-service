@@ -1,10 +1,10 @@
 server:
-  port: 9036
+  port: ${PORT:9036}
 spring:
   data:
     mongodb:
       uri: "mongodb://localhost:27017"
-      database: analytics-service
+      database: ${DATABASE:analytics-service}
   kafka:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer

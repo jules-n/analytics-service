@@ -11,7 +11,7 @@ import org.bson.Document;
 public class DBChangelog001 {
 
     @ChangeSet(order = "001", systemVersion = "001", id = "insert port's data record v1", author = "ynero")
-    public void insertAdminUser(MongoDatabase mongo) {
+    public void initChangeSet(MongoDatabase mongo) {
         log.info("mongo: {}, v-1",mongo.getName());
     }
 }
