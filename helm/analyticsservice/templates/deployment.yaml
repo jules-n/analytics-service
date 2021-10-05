@@ -22,6 +22,7 @@ spec:
           image: "gcr.io/single-system-dev/analytics-service:{{.Values.app.version}}"
           ports:
             - containerPort: {{.Values.deployment.port}}
+            - containerPort: {{.Values.actuator.server.port}}
           env:
             - name: MONGODB_URI
               value: "{{ .Values.deployment.mongo.uri}}"

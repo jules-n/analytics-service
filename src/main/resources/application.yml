@@ -42,4 +42,4 @@ management:
     git:
       enabled: true
   server:
-    port: ${ACTUATOR_PORT:8090}
+    port: ${ACTUATOR_PORT:8077}
