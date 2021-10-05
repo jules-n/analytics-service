@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: analytics-service-serv
+spec:
+  selector:
+    app: analytics-service-app
+  ports:
+    - protocol: TCP
+      port: {{.Values.deployment.port}}
+      targetPort: {{.Values.service.target.port}}

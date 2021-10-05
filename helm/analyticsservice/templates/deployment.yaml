@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Values.deployment.name}}
+  labels:
+    app: analytics-service-app
+    workload: {{.Values.deployment.name}}
+spec:
+  replicas: {{.Values.deployment.replicaCount}}
+  selector:
+    matchLabels:
+      app: analytics-service-app
+      workload: {{.Values.deployment.name}}
+  template:
+    metadata:
+      labels:
+        app: analytics-service-app
+        workload: {{.Values.deployment.name}}
+    spec:
+      containers:
+        - name: {{.Values.deployment.name}}
+          image: "gcr.io/single-system-dev/analytics-service:{{.Values.app.version}}"
+          ports:
+            - containerPort: {{.Values.deployment.port}}
+            - containerPort: {{.Values.actuator.server.port}}
+          env:
+            - name: MONGODB_URI
+              value: "{{ .Values.deployment.mongo.uri}}"
+            - name: MONGODB_DATABASE
+              value: "{{ .Values.deployment.mongo.database}}"
+            - name: SERVER_PORT
+              value: "{{ .Values.deployment.port}}"
+            - name: KAFKA_BOOTSTRAP_SERVER
+              value: "{{ .Values.deployment.kafka.bootstrap.server}}"
+            - name: ACTUATOR_PORT
+              value: "{{ .Values.actuator.server.port}}"
+            - name: ACTUATOR_EXPOSE_ENDPOINTS
+              value: "{{ .Values.actuator.endpoints.web.exposure.include}}"
+            - name: TENANTS_SENDING_DATA
+              value: "{{ .Values.deployment.kafka.topics.tenantsSendingData}}"

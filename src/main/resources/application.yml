@@ -1,12 +1,15 @@
 server:
-  port: ${PORT:9036}
+  port: ${SERVER_PORT:9036}
 spring:
   data:
     mongodb:
-      uri: "mongodb://localhost:27017"
-      database: ${DATABASE:analytics-service}
+      uri: ${MONGODB_URI:mongodb://localhost:27017}
+      database: ${MONGODB_DATABASE:analytics-service}
   kafka:
     consumer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
+      topic:
+        tenants-sending-data-topic: ${TENANTS_SENDING_DATA:tenants-sending-data}
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
@@ -20,9 +23,23 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-serializer: org.springframework.kafka.support.serializer.ToStringSerializer
     producer:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.ToStringSerializer
 mongock:
   start-system-version: 1
   change-logs-scan-package:
     - com.ynero.ss.analytics_service.migration
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: ${ACTUATOR_EXPOSE_ENDPOINTS:*}
+  info:
+    git:
+      enabled: true
+  server:
+    port: ${ACTUATOR_PORT:8077}
