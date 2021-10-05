@@ -1,0 +1,22 @@
+deployment:
+  name: analytics-service
+  replicaCount: 1
+  port: 9036
+  mongo:
+    uri: mongodb://mongo-0.mongo:27017/
+    database: analytics-service
+  kafka:
+    bootstrap:
+      server: 10.8.15.224:9092
+    topics:
+      tenantsSendingData: tenants-sending-data
+service:
+  target:
+    port: 9036
+actuator:
+  server:
+    port: 8090
+  endpoints:
+    web:
+      exposure:
+        include: '*'
