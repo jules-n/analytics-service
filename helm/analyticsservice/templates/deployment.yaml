@@ -20,6 +20,13 @@ spec:
       containers:
         - name: {{.Values.deployment.name}}
           image: "gcr.io/single-system-dev/analytics-service:{{.Values.app.version}}"
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.containers.resources.requests.cpu }}
+              memory: {{ .Values.deployment.containers.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.deployment.containers.resources.limits.cpu }}
+              memory: {{ .Values.deployment.containers.resources.limits.memory }}
           ports:
             - containerPort: {{.Values.deployment.port}}
             - containerPort: {{.Values.actuator.server.port}}
@@ -38,3 +45,5 @@ spec:
               value: "{{ .Values.actuator.endpoints.web.exposure.include}}"
             - name: TENANTS_SENDING_DATA
               value: "{{ .Values.deployment.kafka.topics.tenantsSendingData}}"
+            - name: JDK_JAVA_OPTIONS
+              value: "{{ .Values.env.JDK_JAVA_OPTIONS }}"
