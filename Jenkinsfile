@@ -32,7 +32,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh './gradlew build -x test -x integrationTest'
+                sh './gradlew build -x test'
             }
         }
         stage('unit test') {
