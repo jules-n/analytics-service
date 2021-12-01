@@ -53,7 +53,7 @@ pipeline {
         }
         stage('deploy') {
             environment {
-                GCP_ZONE = 'europe-central2-a'
+                GCP_ZONE = 'europe-central2-c'
             }
             steps {
                 script {
