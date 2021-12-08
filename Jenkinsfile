@@ -14,6 +14,7 @@ pipeline {
         SERVICE_ACCOUNT = credentials("jenkins_gcp_service_account")
         GCP_CLUSTER = credentials("gcp_cluster")
         HELM_DIRECTORY = 'analyticsservice'
+        MONGODB_PASS = credentials("mongodb-password")
     }
     stages {
         stage('init') {
@@ -54,6 +55,7 @@ pipeline {
         stage('deploy') {
             environment {
                 GCP_ZONE = 'europe-central2-c'
+                MONGODB_URI = "mongodb://admin:"+env.MONGODB_PASS+'@my-release-mongodb.default.svc.cluster.local:27017'
             }
             steps {
                 script {
@@ -62,7 +64,8 @@ pipeline {
                                 " --key-file=${GC_KEY} --project ${env.GCP_PROJECT_ID}"
                         sh "gcloud container clusters get-credentials ${env.GCP_CLUSTER} --zone ${GCP_ZONE} " +
                                 "--project ${env.GCP_PROJECT_ID}"
-                        sh "helm upgrade --install --set app.version=${env.SERVICE_VERSION} -f " +
+                        sh "helm upgrade --install --set app.version=${env.SERVICE_VERSION} " +
+                                "--set deployment.mongo.uri=${} -f " +
                                 "./helm/${env.HELM_DIRECTORY}/values-${params.helmValues}.yaml " +
                                 "${env.HELM_DIRECTORY} ./helm/${env.HELM_DIRECTORY}"
                     }
