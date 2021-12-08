@@ -65,7 +65,7 @@ pipeline {
                         sh "gcloud container clusters get-credentials ${env.GCP_CLUSTER} --zone ${GCP_ZONE} " +
                                 "--project ${env.GCP_PROJECT_ID}"
                         sh "helm upgrade --install --set app.version=${env.SERVICE_VERSION} " +
-                                "--set deployment.mongo.uri=${} -f " +
+                                "--set deployment.mongo.uri=${env.MONGODB_URI} -f " +
                                 "./helm/${env.HELM_DIRECTORY}/values-${params.helmValues}.yaml " +
                                 "${env.HELM_DIRECTORY} ./helm/${env.HELM_DIRECTORY}"
                     }
