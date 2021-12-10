@@ -1,9 +1,5 @@
 server:
   port: ${SERVER_PORT:9036}
-mongock:
-  start-system-version: 1
-  change-logs-scan-package:
-    - com.ynero.ss.analytics_service.migration
 management:
   endpoint:
     health:
