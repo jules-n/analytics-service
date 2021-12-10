@@ -34,7 +34,7 @@ spec:
             - name: MONGODB_USERNAME
               value: "{{ .Values.deployment.mongo.username}}"
             - name: MONGODB_PASSWORD
-              value: ${sm://mongo-admin-password}
+              value: "{{ .Values.deployment.mongo.password}}"
             - name: MONGODB_HOST
               value: "{{ .Values.deployment.mongo.host}}"
             - name: MONGODB_PORT
