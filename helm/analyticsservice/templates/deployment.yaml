@@ -34,6 +34,9 @@ spec:
           ports:
             - containerPort: {{.Values.deployment.port}}
             - containerPort: {{.Values.actuator.server.port}}
+          volumeMounts:
+            - name: google-cloud-key
+              mountPath: /var/secrets/google
           env:
             - name: MONGODB_USERNAME
               value: "{{ .Values.deployment.mongo.username}}"
