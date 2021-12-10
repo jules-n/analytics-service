@@ -18,7 +18,7 @@ deployment:
     password: ${sm://mongo-admin-password}
   kafka:
     bootstrap:
-      server: 10.8.15.224:9092
+      server: 10.60.11.131:9092
     topics:
       tenantsSendingData: tenants-sending-data
 service:
