@@ -36,6 +36,10 @@ dependencies {
 
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '0.7.5'
 
+    //secrete-manager
+    implementation 'com.google.cloud:spring-cloud-gcp-starter-secretmanager:2.0.6'
+
+
     //mongo
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation platform("com.github.cloudyrock.mongock:mongock-bom:${mongockVersion}")

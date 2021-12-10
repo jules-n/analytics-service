@@ -1,10 +1,23 @@
 server:
   port: ${SERVER_PORT:9036}
+mongock:
+  start-system-version: 1
+  change-logs-scan-package:
+    - com.ynero.ss.analytics_service.migration
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: ${ACTUATOR_EXPOSE_ENDPOINTS:*}
+  info:
+    git:
+      enabled: true
+  server:
+    port: ${ACTUATOR_PORT:8077}
 spring:
-  data:
-    mongodb:
-      uri: ${MONGODB_URI:mongodb://localhost:27017}
-      database: ${MONGODB_DATABASE:analytics-service}
   kafka:
     consumer:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
@@ -26,20 +39,10 @@ spring:
       bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:9092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.ToStringSerializer
-mongock:
-  start-system-version: 1
-  change-logs-scan-package:
-    - com.ynero.ss.analytics_service.migration
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: ${ACTUATOR_EXPOSE_ENDPOINTS:*}
-  info:
-    git:
-      enabled: true
-  server:
-    port: ${ACTUATOR_PORT:8077}
+  data:
+    mongodb:
+      database: ${MONGODB_DATABASE:analytics-service}
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
+      host: ${MONGODB_HOST:localhost}
+      port: ${MONGODB_PORT:27017}

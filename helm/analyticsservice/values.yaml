@@ -10,9 +10,12 @@ deployment:
       limits:
         cpu: 1000m
         memory: 4Gi
-#  mongo:
-#    uri: mongodb://mongo-0.mongo:27017/
+  mongo:
     database: analytics-service
+    username: admin
+    password: ${sm://mongo-admin-password}
+    host: my-release-mongodb.default.svc.cluster.local
+    port: 27017
   kafka:
     bootstrap:
       server: 10.8.15.224:9092
