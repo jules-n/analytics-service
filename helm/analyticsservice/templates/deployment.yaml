@@ -17,6 +17,10 @@ spec:
         app: analytics-service-app
         workload: {{.Values.deployment.name}}
     spec:
+      volumes:
+        - name: google-cloud-key
+          secret:
+            secretName: analytics-service-sa
       containers:
         - name: {{.Values.deployment.name}}
           image: "gcr.io/single-system-dev/analytics-service:{{.Values.app.version}}"
