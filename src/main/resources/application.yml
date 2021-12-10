@@ -42,7 +42,7 @@ spring:
   data:
     mongodb:
       database: ${MONGODB_DATABASE:analytics-service}
-      username: ${MONGODB_USERNAME}
-      password: ${MONGODB_PASSWORD}
+      username: ${MONGODB_USERNAME:admin}
+      password: ${MONGODB_PASSWORD:admin}
       host: ${MONGODB_HOST:localhost}
       port: ${MONGODB_PORT:27017}

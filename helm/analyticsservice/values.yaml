@@ -15,6 +15,7 @@ deployment:
     username: admin
     host: my-release-mongodb.default.svc.cluster.local
     port: 27017
+    password: ${sm://mongo-admin-password}
   kafka:
     bootstrap:
       server: 10.8.15.224:9092
