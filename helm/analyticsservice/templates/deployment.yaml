@@ -38,6 +38,8 @@ spec:
             - name: google-cloud-key
               mountPath: /var/secrets/google
           env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
             - name: MONGODB_USERNAME
               value: "{{ .Values.deployment.mongo.username}}"
             - name: MONGODB_PASSWORD
