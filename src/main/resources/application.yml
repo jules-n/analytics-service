@@ -43,6 +43,6 @@ spring:
     mongodb:
       database: ${MONGODB_DATABASE:analytics-service}
       username: ${MONGODB_USERNAME:admin}
-      password: ${sm://mongo-admin-password}
+      password: ${MONGODB_PASSWORD:admin}
       host: ${MONGODB_HOST:localhost}
       port: ${MONGODB_PORT:27017}
