@@ -13,7 +13,6 @@ deployment:
   mongo:
     database: analytics-service
     username: admin
-    password: ${sm://mongo-admin-password}
     host: my-release-mongodb.default.svc.cluster.local
     port: 27017
   kafka:
